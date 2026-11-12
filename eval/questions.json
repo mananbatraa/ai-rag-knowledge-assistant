@@ -1,0 +1,22 @@
+[
+  {"question": "How long do refunds take to reach my card?", "source": "refund_policy.md", "answerable": true},
+  {"question": "Can I get money back on a monthly plan if I cancel mid-month?", "source": "refund_policy.md", "answerable": true},
+  {"question": "What is the early termination fee for annual plans?", "source": "refund_policy.md", "answerable": true},
+  {"question": "How much service credit do I get if uptime is below 99%?", "source": "refund_policy.md", "answerable": true},
+  {"question": "Which encryption is used for stored data?", "source": "security_and_data.md", "answerable": true},
+  {"question": "How long are backups kept?", "source": "security_and_data.md", "answerable": true},
+  {"question": "When is my data deleted after I close my account?", "source": "security_and_data.md", "answerable": true},
+  {"question": "Can I keep my data in Frankfurt?", "source": "security_and_data.md", "answerable": true},
+  {"question": "Does Lumora support SAML single sign-on?", "source": "security_and_data.md", "answerable": true},
+  {"question": "How do I report a security vulnerability?", "source": "security_and_data.md", "answerable": true},
+  {"question": "How much does the Starter plan cost per user?", "source": "plans_and_support.pdf", "answerable": true},
+  {"question": "Is a credit card required for the free trial?", "source": "plans_and_support.pdf", "answerable": true},
+  {"question": "How fast does support respond for Business customers?", "source": "plans_and_support.pdf", "answerable": true},
+  {"question": "Which languages is support offered in?", "source": "plans_and_support.pdf", "answerable": true},
+  {"question": "Do Enterprise customers get phone support?", "source": "plans_and_support.pdf", "answerable": true},
+  {"question": "Who founded Lumora Cloud?", "source": null, "answerable": false},
+  {"question": "What is the weather in Paris today?", "source": null, "answerable": false},
+  {"question": "How do I bake sourdough bread?", "source": null, "answerable": false},
+  {"question": "What is Lumora's stock price?", "source": null, "answerable": false},
+  {"question": "Does Lumora offer a mobile app for Android?", "source": null, "answerable": false}
+]

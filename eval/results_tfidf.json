@@ -1,0 +1,10 @@
+{
+  "retriever": "tfidf",
+  "k": 4,
+  "answerable_questions": 15,
+  "unanswerable_questions": 5,
+  "hit@1": 1.0,
+  "hit@4": 1.0,
+  "retrieval_rejected_unanswerable": 0.6,
+  "retrieval_misses": []
+}

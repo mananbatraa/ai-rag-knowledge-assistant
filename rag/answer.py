@@ -8,6 +8,7 @@ Unanswerable questions are handled at two levels:
 Citations are validated so the model can only cite passages it was shown.
 """
 import json
+import re
 from dataclasses import dataclass, field
 
 from .retrieval import Hit, VectorIndex
@@ -67,7 +68,8 @@ class Answerer:
         """Offline fallback: return the best passages verbatim instead of a generated answer."""
         best = hits[:2]
         text = "Most relevant passages (no LLM configured):\n\n" + "\n\n".join(
-            f"[{i}] {h.chunk.text}" for i, h in enumerate(best, 1))
+            f"[{i}] " + re.sub(r"^#+\s*", "", h.chunk.text, flags=re.M)
+            for i, h in enumerate(best, 1))
         return Answer(text, True, sources=best, retrieved=hits, mode="extractive")
 
     def _generate(self, question: str, hits: list[Hit]) -> Answer:
