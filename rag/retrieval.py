@@ -4,6 +4,7 @@ Both backends produce L2-normalised vectors, so the score is cosine similarity
 and the same `min_score` logic decides when nothing relevant was found.
 """
 import json
+import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
@@ -18,6 +19,25 @@ class Hit:
     score: float
 
 
+_SUFFIXES = ("ations", "ation", "ings", "ing", "ers", "ied", "ies", "ed", "es", "er", "ly", "s")
+
+
+def _stem(word: str) -> str:
+    """Tiny suffix-stripper so 'refunds'/'refunded'/'refund' share one term."""
+    for suffix in _SUFFIXES:
+        if word.endswith(suffix) and len(word) - len(suffix) >= 3:
+            return word[: -len(suffix)] + ("y" if suffix in ("ied", "ies") else "")
+    return word
+
+
+def _analyze(text: str) -> list[str]:
+    from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+
+    words = [_stem(w) for w in re.findall(r"[a-z0-9]+", text.lower())
+             if w not in ENGLISH_STOP_WORDS]
+    return words + [f"{a} {b}" for a, b in zip(words, words[1:])]
+
+
 class TfidfEmbedder:
     """Sparse lexical vectors; no model download, works fully offline."""
     name = "tfidf"
@@ -26,8 +46,7 @@ class TfidfEmbedder:
     def __init__(self):
         from sklearn.feature_extraction.text import TfidfVectorizer
 
-        self.vectorizer = TfidfVectorizer(stop_words="english", ngram_range=(1, 2),
-                                          sublinear_tf=True)
+        self.vectorizer = TfidfVectorizer(analyzer=_analyze, sublinear_tf=True)
 
     def fit(self, texts):
         self.vectorizer.fit(texts)
